@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
@@ -18,24 +18,15 @@ const LoginForm = () => {
 
       console.log("USER INFO SENT", user_info);
 
-      fetch("http://localhost:3000/api/user/login", {
+      fetch("http://localhost:8080/api/user/login", {
         mode: "cors",
         method: "POST",
         body: user_info,
       })
         .then((res) => {
-          console.log("RES", res);
-          res.json();
+          return res.json();
         })
-        .then((info) => {
-          if (info) {
-            const user = JSON.parse(info);
-            console.log("INFO", user);
-            console.log("SUCCESSFUL LOGIN");
-          } else {
-            console.log("Login failed");
-          }
-        })
+        .then((info) => console.log("INFO", info))
         .catch((err) => console.error(err));
     }
   }
