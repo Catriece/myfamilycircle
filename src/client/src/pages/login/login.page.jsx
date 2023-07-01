@@ -1,28 +1,27 @@
 import React from "react";
+import LoginForm from "../../hooks/loginform";
+import { ForgotUsernamePage } from "../../components/dashboard/helpers";
 
-export function LoginPage() {
+function LoginPage() {
   return (
-    <div id="main">
-      <div id="LI-header-div">
-        <h3 id="LI-app-name">My Family Circle</h3>
-      </div>
-      <div id="LI-form-div">
-        <form id="LI-form">
-          <label htmlFor="LI-username" className="LI-username">
-            Username:
-            <input type="text" className="LI-username" placeholder="username" />
-          </label>
-          <label htmlFor="LI-password" className="LI-password">
-            Username:
-            <input
-              type="password"
-              className="LI-password"
-              placeholder="password"
-            />
-          </label>
-          <button id="LI-submit-button">LOGIN</button>
-        </form>
+    <div id="main-login">
+      <div id="LI-home-div">
+        <div id="LI-header-div">
+          <h3 id="LI-app-name">My Family Circle</h3>
+          <LoginForm />
+          <div className="LI-forgot-link-div">
+            <a href="/getusername" className="LI-forgot-link">
+              forgot username
+            </a>
+            <br />
+            <a href="/updatepassword" className="LI-forgot-link">
+              forgot password
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+
+export default LoginPage;

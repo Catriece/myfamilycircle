@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+#main-login {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  background: radial-gradient(#fff3d9, #ffe7a0);
+}
+
+#LI-home-div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 88vw;
+  height: 95vh;
+  overflow: hidden;
+}
+
+#LI-form-div {
+  display: flex;
+  text-align: center;
+  overflow: auto;
+}
+
+.LI {
+  align-self: center;
+  border-radius: 15px;
+  border: 0px;
+  height: 30px;
+  width: 90%;
+  text-align: center;
+  margin: 2px;
+}
+
+#login-username {
+  margin-bottom: 10px;
+}
+
+#LI-submit-button {
+  display: inline-block;
+  border-radius: 15px;
+  border: 1px solid black;
+  height: 28px;
+  width: 55%;
+}
+
+.LI-forgot-link-div {
+  text-align: center;
+}
+
+.LI-forgot-link {
+  text-decoration: none;
+  text-align: center;
+  font-size: 12px;
+}

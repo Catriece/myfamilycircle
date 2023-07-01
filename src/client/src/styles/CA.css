@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+}
+
+#main {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  background: radial-gradient(#fff3d9, #ffe7a0);
+}
+
+#NU-home-div {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 88vw;
+  height: 95vh;
+  overflow: hidden;
+}
+
+#NU-form-div {
+  display: flex;
+  text-align: center;
+  overflow: auto;
+}
+
+.NU {
+  align-self: center;
+  border-radius: 15px;
+  border: 0px;
+  height: 30px;
+  width: 100%;
+  text-align: center;
+  margin: 2px;
+}
+
+#NU-button-div {
+  text-align: center;
+}
+
+#NU-signup-button {
+  display: inline-block;
+  border-radius: 15px;
+  border: 1px solid black;
+  height: 28px;
+  width: 75%;
+}

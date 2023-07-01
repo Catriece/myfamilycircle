@@ -28,4 +28,16 @@ router.get("/getusername", async (req, res, next) => {
   }
 });
 
+//CREATING AN ACCOUNT
+router.post("/", async (req, res, next) => {
+  try {
+    let new_user = req.body;
+    let data = await login.newUser(new_user);
+
+    res.json(data);
+  } catch (err) {
+    next(err);
+  }
+});
+
 export default router;

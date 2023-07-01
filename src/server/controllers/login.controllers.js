@@ -8,10 +8,13 @@ const loginAuthentication = async (user_info) => {
   );
 
   if (user.length > 0 && user[0].password === password) {
-    return {
+    //FOR TURNING INTO JSON
+    const user_package = {
       username: user[0].username,
       email: user[0].email,
     };
+
+    return JSON.stringify(user_package);
   } else {
     return null;
   }
@@ -38,18 +41,28 @@ const forgotPassword = async (email, new_password) => {
   }
 };
 
-// THIS RETURNS NULL AND I AM UNSURE WHY
-const forgotUsername = async (email) => {
-  const user = await query("SELECT username FROM User_Table WHERE email = ?", [
-    email,
+// FOR FUTURE REFERENCES: THIS RETURNED NULL BECAUSE EMAIL WAS AN OBJECT NOT A STRING. SO IN ORDER TO ACCESS THE STRING, I NEEDED TO USE OBJECT NOTATION!
+const forgotUsername = async (req) => {
+  console.log("THIS IS WHAT I RECIEVED", req.email);
+  return await query("SELECT username FROM User_Table WHERE email = ?", [
+    req.email,
   ]);
+};
 
-  if (user.length > 0 && user[0].email === email) {
-    return {
-      username: user[0].username,
-    };
+const newUser = async (new_user) => {
+  return await query("INSERT INTO User_Table SET ?", [new_user]);
+};
+
+const userNameAvailable = async (username) => {
+  const username_found = await query(
+    "SELECT username FROM User_Table WHERE username = ?",
+    [username]
+  );
+
+  if (username_found) {
+    console.log("Username already exists");
   } else {
-    return null;
+    console.log("Username can be added");
   }
 };
 
@@ -57,4 +70,6 @@ export default {
   loginAuthentication,
   forgotPassword,
   forgotUsername,
+  newUser,
+  userNameAvailable,
 };
