@@ -5,9 +5,10 @@ const router = express.Router();
 
 // LOGS INTO ACCOUNT
 
-router.post("/login", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     let user_info = req.body;
+    console.log("REQUEST BODY", user_info);
     let data = await login.loginAuthentication(user_info);
 
     res.json(data);
@@ -29,7 +30,7 @@ router.get("/getusername", async (req, res, next) => {
 });
 
 //CREATING AN ACCOUNT
-router.post("/", async (req, res, next) => {
+router.post("/newuser", async (req, res, next) => {
   try {
     let new_user = req.body;
     let data = await login.newUser(new_user);

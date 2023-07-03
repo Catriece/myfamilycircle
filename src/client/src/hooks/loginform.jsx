@@ -1,14 +1,16 @@
 import React from "react";
+import fetch from "isomorphic-fetch";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  let navigate = useNavigate();
+
   function submitForm(e) {
     e.preventDefault();
-
-    console.log("INPUT FIELDS", username, password);
 
     if (username && password) {
       const user_info = {
@@ -16,24 +18,30 @@ const LoginForm = () => {
         password,
       };
 
-      console.log("USER INFO SENT", user_info);
-
-      fetch("http://localhost:8080/api/user/login", {
+      fetch("http://localhost:8080/api/login", {
         mode: "cors",
         method: "POST",
-        body: user_info,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user_info),
       })
-        .then((res) => {
-          return res.json();
+        .then((res) => res.json())
+        .then((info) => {
+          console.log("INFO", info);
+          //CREATE CONTROLLER / ROUTE
+          //NAVIGATES TO DASHBOARD BUT WHAT IS RENDERED ON PAGE DEPENDS ON USER THAT LOGGED IN
         })
-        .then((info) => console.log("INFO", info))
         .catch((err) => console.error(err));
     }
+
+    setUsername("");
+    setPassword("");
   }
 
   return (
     <div id="LI-form-div">
-      <form id="LI-form">
+      <form id="LI-form" onSubmit={submitForm}>
         <div id="login-username">
           <label htmlFor="LI-username" className="LI-username">
             Username:
@@ -66,9 +74,7 @@ const LoginForm = () => {
         </div>
 
         <br />
-        <button id="LI-submit-button" onClick={submitForm}>
-          LOGIN
-        </button>
+        <button id="LI-submit-button">LOGIN</button>
       </form>
     </div>
   );

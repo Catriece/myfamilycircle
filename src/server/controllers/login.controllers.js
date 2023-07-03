@@ -2,26 +2,22 @@ import query from "../db/utils";
 
 const loginAuthentication = async (user_input) => {
   const { username, password } = user_input;
-  console.log("PASSWORD", password);
 
-  const user = await query(
-    "SELECT username, password, email FROM User_Table WHERE username = ?",
-    [username]
-  );
+  if (user_input) {
+    const user = await query(
+      "SELECT username, password, email FROM User_Table WHERE username = ?",
+      [username]
+    );
 
-  const getUser = (user) => {
-    if (user.password === password) {
-      const user_package = {
-        username: user.username,
-        email: user.email,
-      };
+    const user_package = {
+      username: user[0].username,
+      email: user[0].email,
+    };
 
-      return JSON.stringify(user_package);
-    } else {
-      return null;
-    }
-  };
-  return getUser();
+    return JSON.stringify(user_package);
+  } else {
+    return null;
+  }
 };
 
 //I UNDERSTAND THERE SHOULD BE A STEP THAT SENDS A LINK TO THE CLIENTS EMAIL, PROMPTING THEM TO UPDATE THEIR PASSWORD. I AM JUST NOT THERE YET :0
